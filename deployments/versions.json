@@ -1,0 +1,16 @@
+{
+    "v0.1.0": {
+        "contracts": {
+            "swNFT": "0xAec0d87B79178E62B31e193178CBE01282BA652e",
+            "swETH": "0x684c733a4ca975fFbA736919b0B5825087Ce6fad",
+            "strategy": "0x838ef869726299F5734a93ED4710fDE9aAc49b45"
+        },
+        "network": {
+            "name": "goerli",
+            "chainId": 5,
+            "ensAddress": null,
+            "_defaultProvider": null
+        },
+        "date": "Mon 21 Feb 2022 15:44:45 AEDT"
+    }
+}
