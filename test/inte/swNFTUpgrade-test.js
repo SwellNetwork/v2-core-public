@@ -15,14 +15,23 @@ describe("SWNFTUpgrade", async () => {
 
   before(async () => {
     [signer, user] = await ethers.getSigners();
-    const SWNFTUpgrade = await ethers.getContractFactory("SWNFTUpgrade");
-    swNFT = await upgrades.deployProxy(SWNFTUpgrade, [depositAddress], {kind: "uups"});
+
+    const SWDAO= await ethers.getContractFactory("SWDAO");
+    swDAO = await SWDAO.deploy();
+    await swDAO.deployed();
+
+    // const SWNFTUpgrade = await ethers.getContractFactory("SWNFTUpgrade");
+    const SWNFTUpgrade = await ethers.getContractFactory("TestswNFTUpgrade");
+    swNFT = await upgrades.deployProxy(SWNFTUpgrade, [swDAO.address, depositAddress], {
+      kind: "uups",
+      initializer: 'initialize(address, address)',
+    });
     await swNFT.deployed();
 
     const SWETH= await ethers.getContractFactory("SWETH");
     swETH = await SWETH.deploy(swNFT.address);
     await swETH.deployed();
-    await swNFT.setBaseTokenAddress(swETH.address);
+    await swNFT.setswETHAddress(swETH.address);
 
     const Strategy = await ethers.getContractFactory("Strategy");
     strategy = await Strategy.deploy(swNFT.address);
@@ -40,16 +49,17 @@ describe("SWNFTUpgrade", async () => {
     ).to.be.revertedWith("Must send at least 1 ETH");
   });
 
-  it("First deposit must be from owner", async function() {
-    expect(
-      swNFT.connect(user).stake(
-        pubKey,
-        signature,
-        deposit_data_root,
-        { value: ethers.utils.parseEther("1") }
-      )
-    ).to.be.revertedWith("First deposit must be from owner");
-  });
+  // Deprecated as moving the check to the backend
+  // it("First deposit must be from owner", async function() {
+  //   expect(
+  //     swNFT.connect(user).stake(
+  //       pubKey,
+  //       signature,
+  //       deposit_data_root,
+  //       { value: ethers.utils.parseEther("1") }
+  //     )
+  //   ).to.be.revertedWith("First deposit must be from owner");
+  // });
 
   it("can stake 1 Ether", async function() {
     await expect(

@@ -24,7 +24,7 @@ describe("SWNFT", async () => {
     swETH = await SWETH.deploy(swNFT.address);
     await swETH.deployed();
     console.log("swETH deployed to:", swETH.address);
-    await swNFT.setBaseTokenAddress(swETH.address);
+    await swNFT.setswETHAddress(swETH.address);
 
     const Strategy = await ethers.getContractFactory("Strategy");
     strategy = await Strategy.deploy(swNFT.address);

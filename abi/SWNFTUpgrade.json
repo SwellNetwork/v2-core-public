@@ -434,19 +434,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "baseTokenAddress",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "components": [
@@ -543,19 +530,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "eth1WithdrawalAddress",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -599,10 +573,23 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "getWithdrawalCredentials",
+    "outputs": [
+      {
+        "internalType": "bytes",
+        "name": "",
+        "type": "bytes"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
-        "name": "_eth1WithdrawalAddress",
+        "name": "_swDAOAddress",
         "type": "address"
       }
     ],
@@ -815,11 +802,11 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_baseTokenAddress",
+        "name": "_swETHAddress",
         "type": "address"
       }
     ],
-    "name": "setBaseTokenAddress",
+    "name": "setswETHAddress",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -886,6 +873,32 @@
         "internalType": "bool",
         "name": "",
         "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "swDAOAddress",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "swETHAddress",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",

@@ -1,16 +1,16 @@
 {
     "v0.1.0": {
         "contracts": {
-            "swNFT": "0xAec0d87B79178E62B31e193178CBE01282BA652e",
-            "swETH": "0x684c733a4ca975fFbA736919b0B5825087Ce6fad",
-            "strategy": "0x838ef869726299F5734a93ED4710fDE9aAc49b45"
+            "depositContract": "0xe0380e89bf3C5AD1ACC833c5d414007416A200B1",
+            "swDAO": "0xc8766F1a36eC1fD76cC5Bb6f61c8ccd322F4E89b",
+            "swNFT": "0xDffa9BA65Eb4345BFF28b8e2F50A241024c9A7Ee",
+            "swETH": "0x73032fa3A39B3741D662Ed431E723A581624F6b0",
+            "strategy": "0x44A25dA663B139Cd026FC9d17f3dBe868d85EAd2"
         },
         "network": {
-            "name": "goerli",
-            "chainId": 5,
-            "ensAddress": null,
-            "_defaultProvider": null
+            "name": "kaleido",
+            "chainId": 1191572815
         },
-        "date": "Mon 21 Feb 2022 15:44:45 AEDT"
+        "date": "Thu 24 Feb 2022 14:56:48 AEDT"
     }
 }

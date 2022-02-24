@@ -207,7 +207,7 @@
   },
   {
     "inputs": [],
-    "name": "baseTokenAddress",
+    "name": "swETHAddress",
     "outputs": [
       {
         "internalType": "address",
