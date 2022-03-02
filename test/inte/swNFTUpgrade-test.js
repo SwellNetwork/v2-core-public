@@ -7,7 +7,7 @@ describe("SWNFTUpgrade", async () => {
     "0xb57e2062d1512a64831462228453975326b65c7008faaf283d5e621e58725e13d10f87e0877e8325c2b1fe754f16b1ec";
   const signature =
     "0xb224d558d829c245fe56bff9d28c7fd0d348d6795eb8faef8ce220c3657e373f8dc0a0c8512be589ecaa749fe39fc0371380a97aab966606ba7fa89c78dc1703858dfc5d3288880a813e7743f1ff379192e1f6b01a6a4a3affee1d50e5b3c849";
-  const deposit_data_root =
+  const depositDataRoot =
     "0x81a814655bfc695f5f207d433b4d2e272d764857fee6efd58ba4677c076e60a9";
   const depositAddress = "0x00000000219ab540356cBB839Cbe05303d7705Fa";
   const zeroAddress = "0x0000000000000000000000000000000000000000";
@@ -21,10 +21,17 @@ describe("SWNFTUpgrade", async () => {
     await swDAO.deployed();
 
     // const SWNFTUpgrade = await ethers.getContractFactory("SWNFTUpgrade");
-    const SWNFTUpgrade = await ethers.getContractFactory("TestswNFTUpgrade");
+    const nftDescriptorLibraryFactory = await ethers.getContractFactory('NFTDescriptor')
+    const nftDescriptorLibrary = await nftDescriptorLibraryFactory.deploy()
+    const SWNFTUpgrade = await ethers.getContractFactory("TestswNFTUpgrade", {
+        libraries: {
+          NFTDescriptor: nftDescriptorLibrary.address,
+        },
+    });
     swNFT = await upgrades.deployProxy(SWNFTUpgrade, [swDAO.address, depositAddress], {
       kind: "uups",
       initializer: 'initialize(address, address)',
+      unsafeAllowLinkedLibraries: true
     });
     await swNFT.deployed();
 
@@ -41,9 +48,9 @@ describe("SWNFTUpgrade", async () => {
   it("cannot stake less than 1 Ether", async function() {
     expect(
       swNFT.stake(
-        pubKey,
+        [ { pubKey,
         signature,
-        deposit_data_root,
+        depositDataRoot } ],
         { value: ethers.utils.parseEther("0.1") }
       )
     ).to.be.revertedWith("Must send at least 1 ETH");
@@ -55,7 +62,7 @@ describe("SWNFTUpgrade", async () => {
   //     swNFT.connect(user).stake(
   //       pubKey,
   //       signature,
-  //       deposit_data_root,
+  //       depositDataRoot,
   //       { value: ethers.utils.parseEther("1") }
   //     )
   //   ).to.be.revertedWith("First deposit must be from owner");
@@ -64,9 +71,9 @@ describe("SWNFTUpgrade", async () => {
   it("can stake 1 Ether", async function() {
     await expect(
       await swNFT.stake(
-        pubKey,
+        [ { pubKey,
         signature,
-        deposit_data_root,
+        depositDataRoot } ],
         { value: ethers.utils.parseEther("1") }
       )
     ).to.emit(swNFT, "LogStake")
@@ -74,9 +81,11 @@ describe("SWNFTUpgrade", async () => {
 
     const tokenURI = await swNFT.tokenURI("1");
     const decodeTokenURI = extractJSONFromURI(tokenURI);
-    expect(decodeTokenURI.name).to.be.equal("SwellNetwork Validator - 0xb57e2062d1512a64831462228453975326b65c7008faaf283d5e621e58725e13d10f87e0877e8325c2b1fe754f16b1ec - 1 Ether");
-    expect(decodeTokenURI.description).to.be.equal("This NFT represents a position in a SwellNetwork Validator. The owner of this NFT can modify or redeem position. \n\n⚠️ DISCLAIMER: Due diligence is imperative when assessing this NFT. Make sure token addresses match the expected tokens, as token symbols may be imitated.");
-    expect(decodeTokenURI.image).to.be.equal("data:image/svg+xml;base64,");
+    expect(decodeTokenURI.name).to.be.equal("Swell Network Validator - swETH - " + pubKey + " <> 1 Ether");
+    expect(decodeTokenURI.description).to.be.equal("This NFT represents a liquidity position in a Swell Network Validator. The owner of this NFT can modify or redeem the position.\n" +
+    "swETH Address: " + swETH.address.toLowerCase() + "\n" +
+    "Token ID: 1\n\n" +
+    "⚠️ DISCLAIMER: Due diligence is imperative when assessing this NFT. Make sure token addresses match the expected tokens, as token symbols may be imitated.");
 
     const owner = await swNFT.ownerOf("1");
     expect(owner).to.be.equal(signer.address);
@@ -95,9 +104,9 @@ describe("SWNFTUpgrade", async () => {
   it("cannot stake 1 Ether again", async function() {
     await expect(
       swNFT.connect(user).stake(
-        pubKey,
+        [ { pubKey,
         signature,
-        deposit_data_root,
+        depositDataRoot } ],
         { value: ethers.utils.parseEther("1") }
       )
     ).to.be.revertedWith("Must send at least 16 ETH");
@@ -113,9 +122,9 @@ describe("SWNFTUpgrade", async () => {
   it("can stake 1 Ether again", async function() {
     await expect(
       await swNFT.connect(user).stake(
-        pubKey,
+        [ { pubKey,
         signature,
-        deposit_data_root,
+        depositDataRoot } ],
         { value: ethers.utils.parseEther("1") }
       )
     ).to.emit(swNFT, "LogStake")
@@ -123,9 +132,11 @@ describe("SWNFTUpgrade", async () => {
 
     const tokenURI = await swNFT.tokenURI("2");
     const decodeTokenURI = extractJSONFromURI(tokenURI);
-    expect(decodeTokenURI.name).to.be.equal("SwellNetwork Validator - 0xb57e2062d1512a64831462228453975326b65c7008faaf283d5e621e58725e13d10f87e0877e8325c2b1fe754f16b1ec - 1 Ether");
-    expect(decodeTokenURI.description).to.be.equal("This NFT represents a position in a SwellNetwork Validator. The owner of this NFT can modify or redeem position. \n\n⚠️ DISCLAIMER: Due diligence is imperative when assessing this NFT. Make sure token addresses match the expected tokens, as token symbols may be imitated.");
-    expect(decodeTokenURI.image).to.be.equal("data:image/svg+xml;base64,");
+    expect(decodeTokenURI.name).to.be.equal("Swell Network Validator - swETH - " + pubKey + " <> 1 Ether");
+    expect(decodeTokenURI.description).to.be.equal("This NFT represents a liquidity position in a Swell Network Validator. The owner of this NFT can modify or redeem the position.\n" +
+    "swETH Address: " + swETH.address.toLowerCase() + "\n" +
+    "Token ID: 2\n\n" +
+    "⚠️ DISCLAIMER: Due diligence is imperative when assessing this NFT. Make sure token addresses match the expected tokens, as token symbols may be imitated.");
 
     const owner = await swNFT.ownerOf("2");
     expect(owner).to.be.equal(user.address);
@@ -144,9 +155,9 @@ describe("SWNFTUpgrade", async () => {
   it("cannot stake more than 32 Ether", async function() {
     expect(
       swNFT.stake(
-        pubKey,
+        [ { pubKey,
         signature,
-        deposit_data_root,
+        depositDataRoot } ],
         { value: ethers.utils.parseEther("32") }
       )
     ).to.be.revertedWith("cannot stake more than 32 ETH");
