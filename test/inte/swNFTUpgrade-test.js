@@ -99,6 +99,9 @@ describe("SWNFTUpgrade", async () => {
     expect(position.pubKey).to.be.equal(pubKey);
     expect(position.value).to.be.equal('1000000000000000000');
     expect(position.baseTokenBalance).to.be.equal('1000000000000000000');
+
+    const tvl = await swNFT.tvl();
+    expect(tvl).to.be.equal('1000000000000000000');
   });
 
   it("cannot stake 1 Ether again", async function() {
@@ -150,6 +153,9 @@ describe("SWNFTUpgrade", async () => {
     expect(position.pubKey).to.be.equal(pubKey);
     expect(position.value).to.be.equal('1000000000000000000');
     expect(position.baseTokenBalance).to.be.equal('1000000000000000000');
+
+    const tvl = await swNFT.tvl();
+    expect(tvl).to.be.equal('2000000000000000000');
   });
 
   it("cannot stake more than 32 Ether", async function() {
@@ -162,7 +168,6 @@ describe("SWNFTUpgrade", async () => {
       )
     ).to.be.revertedWith("cannot stake more than 32 ETH");
   });
-
 
   it("cannot withdraw 2 swETH", async function() {
     expect(
