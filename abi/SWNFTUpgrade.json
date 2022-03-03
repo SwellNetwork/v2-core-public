@@ -257,6 +257,12 @@
         "internalType": "uint256",
         "name": "deposit",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "timeStamp",
+        "type": "uint256"
       }
     ],
     "name": "LogStake",
@@ -691,6 +697,11 @@
         "internalType": "uint256",
         "name": "baseTokenBalance",
         "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "timeStamp",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -794,6 +805,19 @@
       }
     ],
     "name": "setApprovalForAll",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_feePool",
+        "type": "address"
+      }
+    ],
+    "name": "setFeePool",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -1075,7 +1099,13 @@
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
     "name": "unstake",
     "outputs": [],
     "stateMutability": "pure",

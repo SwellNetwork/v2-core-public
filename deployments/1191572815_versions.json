@@ -12,5 +12,19 @@
       "chainId": 1191572815
     },
     "date": "Thu 24 Feb 2022 14:56:48 AEDT"
+  },
+  "v1.2.1": {
+    "contracts": {
+      "depositContract": "0xe0380e89bf3C5AD1ACC833c5d414007416A200B1",
+      "swDAO": "0x82eCF2415f4C0FA486A787dc1f8410B657EE9823",
+      "swNFT": "0xf3544e0E22dD80Ac6300f7E306769553e406d927",
+      "swETH": "0x75bB9fC72E893EA3E1975a473Ec4669AE76a36B1",
+      "strategy": "0xd471C7B6F7d49b07CBE023Cb3B5A048A7bf3e9A7"
+    },
+    "network": {
+      "chainId": 1191572815,
+      "name": "unknown"
+    },
+    "date": "Thu, 03 Mar 2022 06:50:50 GMT"
   }
 }

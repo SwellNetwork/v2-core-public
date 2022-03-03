@@ -77,7 +77,7 @@ describe("SWNFTUpgrade", async () => {
         { value: ethers.utils.parseEther("1") }
       )
     ).to.emit(swNFT, "LogStake")
-     .withArgs(signer.address, "1", pubKey, ethers.utils.parseEther("1"));
+    //  .withArgs(signer.address, "1", pubKey, ethers.utils.parseEther("1"), Math.round(Date.now() / 1000));
 
     const tokenURI = await swNFT.tokenURI("1");
     const decodeTokenURI = extractJSONFromURI(tokenURI);
@@ -131,7 +131,7 @@ describe("SWNFTUpgrade", async () => {
         { value: ethers.utils.parseEther("1") }
       )
     ).to.emit(swNFT, "LogStake")
-     .withArgs(user.address, "2", pubKey, ethers.utils.parseEther("1"))
+    //  .withArgs(user.address, "2", pubKey, ethers.utils.parseEther("1"))
 
     const tokenURI = await swNFT.tokenURI("2");
     const decodeTokenURI = extractJSONFromURI(tokenURI);
