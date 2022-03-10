@@ -26,5 +26,20 @@
       "name": "unknown"
     },
     "date": "Thu, 03 Mar 2022 06:50:50 GMT"
+  },
+  "v1.2.2": {
+    "contracts": {
+      "depositContractAddress": "0xf9F565A83c3fca289c3A17B9D02162CEB6069D34",
+      "swDAO": "0x5C4557358359f6b36dA13cD44F6775133585FAcf",
+      "nftDescriptorLibrary": "0x645ab27F74e242c5c2A909aEbE6C56Af3CC4FAB1",
+      "swNFT": "0xF60e61765fA8d038a00f4a647676Cb21E6d3F2b2",
+      "swETH": "0xCF3C4A750fe21C30DeE2dB3ABEd3F40d1E6DE02c",
+      "strategy": "0x98A68E9925f700a1c466f3C979b939Db2edB55b5"
+    },
+    "network": {
+      "chainId": 1191572815,
+      "name": "unknown"
+    },
+    "date": "Thu, 10 Mar 2022 03:42:10 GMT"
   }
 }
