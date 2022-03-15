@@ -29,16 +29,17 @@
   },
   "v1.2.2": {
     "contracts": {
-      "swDAO": "0xdd18e2a11AB99F1b99F3ECBe9A7814203057E61F",
-      "swNFT": "0x5257bfE84bd3403C910d4b4EC28056100eb268Ec",
-      "swETH": "0xCFF96C6cE562F211106A8faEE2D0D3e190A654A6",
-      "strategy": "0x6adb46B87d39579Ad00D1350550f86048B85dc7a"
+      "swDAO": "0xe86C95a703EFB925c6C8a7bC3AFec47dd5dcdDAa",
+      "nftDescriptorLibrary": "0x751a15890C11feA088a4FAd65E5128589C57172F",
+      "swNFT": "0xe59aC2C5Ae8462554308c578aE4bc8e4098d0414",
+      "swETH": "0xe438a1ad5C5f29B6346e92eefdEAb8B4A1a8B3Cf",
+      "strategy": "0x76201e734111c2d540e0d36DBB4Fc9814fdfEE19"
     },
     "network": {
       "name": "goerli",
       "chainId": 5,
       "ensAddress": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e"
     },
-    "date": "Wed, 09 Mar 2022 07:32:13 GMT"
+    "date": "Tue, 15 Mar 2022 05:55:44 GMT"
   }
 }
