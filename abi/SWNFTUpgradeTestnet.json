@@ -237,6 +237,19 @@
       {
         "indexed": false,
         "internalType": "address",
+        "name": "feePool",
+        "type": "address"
+      }
+    ],
+    "name": "LogSetFeePool",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
         "name": "swETHAddress",
         "type": "address"
       }
@@ -586,6 +599,19 @@
         "internalType": "address",
         "name": "",
         "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getStrategyLength",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "length",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
