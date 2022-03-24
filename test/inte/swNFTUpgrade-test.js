@@ -243,15 +243,15 @@ describe("SWNFTUpgrade", async () => {
   });
 
   it("can enter strategy", async function() {
-    expect(swNFT.connect(user).enterStrategy("1", "1")).to.be.revertedWith(
-      "Only owner can exit strategy"
-    );
+    expect(
+      swNFT.connect(user).enterStrategy("1", "1", ethers.utils.parseEther("1"))
+    ).to.be.revertedWith("Only owner can exit strategy");
 
-    expect(swNFT.enterStrategy("3", "1")).to.be.revertedWith(
-      "Query for nonexistent token"
-    );
+    expect(
+      swNFT.enterStrategy("3", "1", ethers.utils.parseEther("1"))
+    ).to.be.revertedWith("Query for nonexistent token");
 
-    expect(swNFT.enterStrategy("1", "1"))
+    expect(swNFT.enterStrategy("1", "1", ethers.utils.parseEther("1")))
       .to.emit(swNFT, "LogEnterStrategy")
       .withArgs(
         "1",
@@ -261,17 +261,17 @@ describe("SWNFTUpgrade", async () => {
         ethers.utils.parseEther("1")
       );
 
-    expect(swNFT.enterStrategy("1", "1")).to.be.revertedWith(
-      "cannot enter strategy with no base token balance"
-    );
+    expect(
+      swNFT.enterStrategy("1", "1", ethers.utils.parseEther("1"))
+    ).to.be.revertedWith("reverted with panic code 0x11");
   });
 
   it("can exit strategy", async function() {
-    expect(swNFT.connect(user).exitStrategy("1", "1")).to.be.revertedWith(
-      "Only owner can exit strategy"
-    );
+    expect(
+      swNFT.connect(user).exitStrategy("1", "1", ethers.utils.parseEther("1"))
+    ).to.be.revertedWith("Only owner can exit strategy");
 
-    expect(swNFT.exitStrategy("1", "1"))
+    expect(swNFT.exitStrategy("1", "1", ethers.utils.parseEther("1")))
       .to.emit(swNFT, "LogExitStrategy")
       .withArgs(
         "1",
@@ -281,9 +281,9 @@ describe("SWNFTUpgrade", async () => {
         ethers.utils.parseEther("1")
       );
 
-    expect(swNFT.exitStrategy("1", "1")).to.be.revertedWith(
-      "No position to exit"
-    );
+    expect(
+      swNFT.exitStrategy("1", "1", ethers.utils.parseEther("1"))
+    ).to.be.revertedWith("Not enough position to exit");
   });
 
   it("can batch actions", async function() {
@@ -292,13 +292,13 @@ describe("SWNFTUpgrade", async () => {
         {
           tokenId: "2",
           action: "2",
-          amount: "0",
+          amount: ethers.utils.parseEther("1"),
           strategy: "1"
         },
         {
           tokenId: "2",
           action: "3",
-          amount: "0",
+          amount: ethers.utils.parseEther("1"),
           strategy: "1"
         },
         {

@@ -548,6 +548,11 @@
         "internalType": "uint256",
         "name": "strategy",
         "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
       }
     ],
     "name": "enterStrategy",
@@ -572,14 +577,19 @@
         "internalType": "uint256",
         "name": "strategy",
         "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
       }
     ],
     "name": "exitStrategy",
     "outputs": [
       {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
+        "internalType": "bool",
+        "name": "success",
+        "type": "bool"
       }
     ],
     "stateMutability": "nonpayable",
