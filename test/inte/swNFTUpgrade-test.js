@@ -72,7 +72,7 @@ describe("SWNFTUpgrade", async () => {
   //   ).to.be.revertedWith("First deposit must be from owner");
   // });
 
-  it("can stake 1 Ether", async function() {
+  it("can stake 1 Ether as owner", async function() {
     amount = ethers.utils.parseEther("1");
     await expect(
       await swNFT.stake([{ pubKey, signature, depositDataRoot, amount }], {
@@ -107,6 +107,7 @@ describe("SWNFTUpgrade", async () => {
     expect(position.pubKey).to.be.equal(pubKey);
     expect(position.value).to.be.equal("1000000000000000000");
     expect(position.baseTokenBalance).to.be.equal("1000000000000000000");
+    expect(position.operator).to.be.equal(true); //non-whitelist first deposit
 
     const tvl = await swNFT.tvl();
     expect(tvl).to.be.equal("1000000000000000000");
@@ -166,6 +167,7 @@ describe("SWNFTUpgrade", async () => {
     expect(position.pubKey).to.be.equal(pubKey);
     expect(position.value).to.be.equal("1000000000000000000");
     expect(position.baseTokenBalance).to.be.equal("1000000000000000000");
+    expect(position.operator).to.be.equal(false); //whitelist second deposit
 
     const tvl = await swNFT.tvl();
     expect(tvl).to.be.equal("2000000000000000000");
