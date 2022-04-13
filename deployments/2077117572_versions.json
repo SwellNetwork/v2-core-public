@@ -15,16 +15,17 @@
   },
   "v1.4.0": {
     "contracts": {
-      "swDAO": "0x32cC85B45c9237D38959d3Ff3c470b47EBd25f20",
-      "nftDescriptorLibrary": "0x9379572732E9A7756C860B0129bfbC547793107E",
-      "swNFT": "0x1465472f57192ae398B4dcFa9946D3B3eBB6e45e",
-      "swETH": "0xa8871Ef34853212eAEb94096851677E9722CA9fF",
-      "strategy": "0xe0380e89bf3C5AD1ACC833c5d414007416A200B1"
+      "depositContractAddress": "0x1CfaA309e849BDE2Ff1506236D3ebf47BBA9572a",
+      "swDAO": "0x4F6385f180ad473ab9c2127D4556587d2aFfAb4D",
+      "nftDescriptorLibrary": "0x0988DF9B2F00Da9B515Ab4E555e9686A907083A0",
+      "swNFT": "0x0Be0fE93885bDc2C8459f04EdC0Df2e285b8d6DB",
+      "swETH": "0x798632F9d8be6CBec6E2630b77342171BC90B5b8",
+      "strategy": "0xF81058685270A4380E948D8ea4802536c4eB1349"
     },
     "network": {
       "chainId": 2077117572,
       "name": "unknown"
     },
-    "date": "Tue, 12 Apr 2022 10:42:16 GMT"
+    "date": "Wed, 13 Apr 2022 11:45:34 GMT"
   }
 }
